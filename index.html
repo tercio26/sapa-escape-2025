@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta name="description" content="Kế hoạch chuyến đi Sapa tháng 12/2025 của nhóm 4 người. Khám phá Fansipan, Thung lũng Mường Hoa, Bản Cát Cát và nhiều địa điểm tuyệt đẹp khác!">
     <meta name="keywords" content="Sapa, du lịch Sapa, kế hoạch du lịch, Fansipan, Thung lũng Mường Hoa, Bản Cát Cát, Nhà thờ đá Sapa, Thác Bạc, Ô Quý Hồ, Việt Nam">
     <meta name="author" content="Sapa 2025 Explorers">
@@ -18,7 +18,7 @@
     <title>Sapa 2025 - Winter Escape HCM ✈️ Sapa</title>
     <style>
         
-@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
         * {
@@ -40,7 +40,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .snowflake {
+         .snowflake {
             position: fixed;
             top: -20px;
             z-index: 9999;
@@ -156,6 +156,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin: 60px 0;
+            perspective: 1000px;
         }
 
         .member-card {
@@ -169,11 +170,12 @@
                               linear-gradient(135deg, rgba(96, 165, 250, 0.5), rgba(192, 132, 252, 0.5));
             background-origin: border-box;
             background-clip: padding-box, border-box;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
                         inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
         }
 
         .member-card::before {
@@ -183,21 +185,81 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(192, 132, 252, 0.2));
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(192, 132, 252, 0.3));
             opacity: 0;
-            transition: opacity 0.4s;
+            transition: opacity 0.5s;
+            z-index: 0;
         }
 
-        .member-card:hover {
-            transform: translateY(-15px) scale(1.02);
+        .member-card::after {
+            content: '✨';
+            position: absolute;
+            font-size: 3em;
+            top: 20px;
+            right: 20px;
+            opacity: 0;
+            transform: rotate(-15deg) scale(0);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 0;
+        }
+
+        .member-card:nth-child(1) {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .member-card:nth-child(2) {
+            animation: float 6s ease-in-out infinite 1.5s;
+        }
+
+        .member-card:nth-child(3) {
+            animation: float 6s ease-in-out infinite 3s;
+        }
+
+        .member-card:nth-child(4) {
+            animation: float 6s ease-in-out infinite 4.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(0.5deg);
+            }
+        }
+
+        .member-card:hover, .member-card:active {
+            transform: translateY(-20px) scale(1.05) rotateY(5deg);
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8)),
                               linear-gradient(135deg, #60a5fa, #c084fc, #f472b6);
-            box-shadow: 0 30px 60px rgba(96, 165, 250, 0.3),
+            box-shadow: 0 40px 80px rgba(96, 165, 250, 0.4),
+                        0 0 50px rgba(192, 132, 252, 0.3),
                         inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
-        .member-card:hover::before {
+        .member-card:hover::before, .member-card:active::before {
             opacity: 1;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        .member-card:hover::after, .member-card:active::after {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
         }
 
         .avatar {
@@ -211,18 +273,44 @@
             justify-content: center;
             font-size: 2.5em;
             font-weight: 700;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                        0 0 30px rgba(96, 165, 250, 0.3);
             position: relative;
             z-index: 1;
-            transition: all 0.4s;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             background-size: cover;
             background-position: center;
+            overflow: hidden;
         }
 
-        .member-card:hover .avatar {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
+        .avatar::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: conic-gradient(from 0deg, #60a5fa, #c084fc, #f472b6, #60a5fa);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .member-card:hover .avatar, .member-card:active .avatar {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 20px 50px rgba(96, 165, 250, 0.6),
+                        0 0 60px rgba(192, 132, 252, 0.5);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .member-card:hover .avatar::before, .member-card:active .avatar::before {
+            opacity: 0.6;
         }
 
         .member-name {
@@ -231,12 +319,25 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .member-card:hover .member-name, .member-card:active .member-name {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
         }
 
         .member-emoji {
             font-size: 2em;
             position: relative;
             z-index: 1;
+            display: inline-block;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .member-card:hover .member-emoji, .member-card:active .member-emoji {
+            transform: scale(1.3) rotate(20deg);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
         }
 
         .section {
@@ -289,7 +390,7 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
-        .checklist-item:hover {
+        .checklist-item:hover, .checklist-item:active {
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)),
                               linear-gradient(135deg, rgba(96, 165, 250, 0.6), rgba(192, 132, 252, 0.6));
             transform: translateX(10px);
@@ -340,7 +441,7 @@
             transform: translate(50%, -50%);
         }
 
-        .place-card:hover {
+        .place-card:hover, .place-card:active {
             transform: translateY(-5px);
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)),
                               linear-gradient(135deg, #60a5fa, #c084fc);
@@ -396,16 +497,154 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            header {
+                padding: 40px 15px;
+                margin-bottom: 30px;
+            }
+
             .hero-title {
-                font-size: 3em;
+                font-size: 2.5em;
+                letter-spacing: -1px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2em;
+                letter-spacing: 2px;
+            }
+
+            .route-badge {
+                font-size: 1em;
+                padding: 12px 30px;
+                margin: 20px 0;
+            }
+
+            .weather-widget {
+                padding: 30px 20px;
+                border-radius: 20px;
+                margin: 30px 0;
             }
             
             .temp-display {
-                font-size: 4em;
+                font-size: 3.5em;
+            }
+
+            .alert-box {
+                font-size: 1em;
+                padding: 20px 15px;
+                border-radius: 15px;
             }
             
             .section {
                 padding: 30px 20px;
+                border-radius: 20px;
+                margin: 30px 0;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+                margin-bottom: 25px;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin: 30px 0;
+            }
+
+            .member-card {
+                padding: 25px 15px;
+                border-radius: 20px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+
+            .member-name {
+                font-size: 1.2em;
+            }
+
+            .member-emoji {
+                font-size: 1.5em;
+            }
+
+            .checklist-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .checklist-item {
+                padding: 15px 18px;
+                border-radius: 12px;
+                font-size: 0.95em;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .place-card {
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+
+            .place-icon {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+
+            .place-name {
+                font-size: 1.1em;
+            }
+
+            .place-desc {
+                font-size: 0.9em;
+            }
+
+            footer {
+                padding: 40px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2em;
+            }
+
+            .hero-subtitle {
+                font-size: 1em;
+                letter-spacing: 1px;
+            }
+
+            .route-badge {
+                font-size: 0.9em;
+                padding: 10px 25px;
+            }
+
+            .temp-display {
+                font-size: 3em;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .section {
+                padding: 25px 15px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -413,14 +652,14 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="hero-title">SAPA 2025</h1>
+            <h1 class="hero-title poppins">SAPA 2025</h1>
             <div class="hero-subtitle">WINTER ESCAPE</div>
             <div class="route-badge poppins">HCM ✈️ SAPA</div>
         </header>
 
         <div class="weather-widget">
             <div class="poppins" style="font-size: 1.3em; opacity: 0.9; margin-bottom: 10px;">Nhiệt độ Sapa</div>
-            <div class="temp-display">5° - 15°</div>
+            <div class="temp-display">3° - 10°</div>
             <div class="alert-box poppins">
                 ❄️ Mang đồ ấm nha mấy bà! ❄️
             </div>
@@ -431,22 +670,22 @@
             <div class="members-grid">
                 <div class="member-card">
                     <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=400&q=80');"></div>
-                    <div class="member-name">Thảo Linh</div>
+                    <div class="member-name poppins">Thảo Linh</div>
                     <div class="member-emoji">🌸</div>
                 </div>
                 <div class="member-card">
                     <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&q=80');"></div>
-                    <div class="member-name">Phương Linh</div>
+                    <div class="member-name poppins">Phương Linh</div>
                     <div class="member-emoji">🌺</div>
                 </div>
                 <div class="member-card">
                     <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400&q=80');"></div>
-                    <div class="member-name">Trọng Đạt</div>
+                    <div class="member-name poppins">Trọng Đạt</div>
                     <div class="member-emoji">⛰️</div>
                 </div>
                 <div class="member-card">
                     <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&q=80');"></div>
-                    <div class="member-name">Vạn Phát</div>
+                    <div class="member-name poppins">Vạn Phát</div>
                     <div class="member-emoji">🎒</div>
                 </div>
             </div>
